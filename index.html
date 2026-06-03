@@ -18,6 +18,7 @@
       <div class="result-wrap">
         <p class="label">本轮抽中</p>
         <h2 id="result" class="result">点击下面按钮开始抽菜</h2>
+        <p id="resultMeta" class="result-meta">可先按分类筛选，再随机抽一道更贴近今天胃口。</p>
       </div>
 
       <div class="actions">
@@ -30,10 +31,16 @@
     <section class="grid">
       <section class="card">
         <div class="section-head">
-          <h3>菜单</h3>
+          <h3>筛选和菜单</h3>
           <span id="count" class="badge"></span>
         </div>
-        <div id="menuList" class="menu-list"></div>
+        <div id="filters" class="filters"></div>
+        <label class="switch-row">
+          <input id="avoidRecentCheckbox" type="checkbox" checked>
+          <span>避开最近 3 次抽中过的菜</span>
+        </label>
+        <button id="toggleMenuBtn" class="toggle-menu-btn" type="button">展开全部菜单</button>
+        <div id="menuList" class="menu-list is-collapsed"></div>
       </section>
 
       <section class="card">
@@ -48,6 +55,10 @@
 
   <template id="menuItemTemplate">
     <span class="menu-item"></span>
+  </template>
+
+  <template id="filterTemplate">
+    <button class="filter-chip" type="button"></button>
   </template>
 
   <script src="./script.js"></script>
