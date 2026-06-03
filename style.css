@@ -1,0 +1,243 @@
+:root {
+  --bg-top: #f4ecd8;
+  --bg-bottom: #e7f2df;
+  --card: rgba(255, 252, 245, 0.84);
+  --card-border: rgba(95, 76, 41, 0.12);
+  --text: #352718;
+  --muted: #76644f;
+  --accent: #cf5a2a;
+  --accent-dark: #a9441d;
+  --accent-soft: #f4c79c;
+  --green: #6f8b4e;
+  --shadow: 0 18px 45px rgba(88, 61, 24, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255, 225, 194, 0.55), transparent 28%),
+    linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+}
+
+.app {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent-dark);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  line-height: 1;
+}
+
+.subtitle {
+  width: min(560px, 100%);
+  margin: 14px auto 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.picker-card {
+  padding: 34px 28px;
+  margin-bottom: 22px;
+}
+
+.result-wrap {
+  text-align: center;
+}
+
+.label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.result {
+  margin: 16px 0 0;
+  min-height: 72px;
+  display: grid;
+  place-items: center;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.2;
+  transition: transform 220ms ease, color 220ms ease;
+}
+
+.result.is-rolling {
+  color: var(--green);
+  transform: scale(1.04);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn,
+.text-btn {
+  border: 0;
+  cursor: pointer;
+  transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
+}
+
+.btn:hover,
+.text-btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn {
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.btn.primary {
+  color: #fffaf4;
+  background: linear-gradient(135deg, var(--accent), #e27d43);
+}
+
+.btn.ghost {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(95, 76, 41, 0.08);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 22px;
+}
+
+.grid .card {
+  padding: 24px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-head h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.badge {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--accent-dark);
+  background: rgba(207, 90, 42, 0.12);
+}
+
+.menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.menu-item {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(95, 76, 41, 0.08);
+  color: var(--text);
+  font-size: 0.94rem;
+}
+
+.menu-item.active {
+  background: linear-gradient(135deg, rgba(207, 90, 42, 0.16), rgba(111, 139, 78, 0.2));
+  border-color: rgba(207, 90, 42, 0.28);
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.history-list li {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(95, 76, 41, 0.07);
+}
+
+.history-list li.empty {
+  color: var(--muted);
+}
+
+.text-btn {
+  padding: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .app {
+    width: min(100% - 20px, 1080px);
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+
+  .picker-card,
+  .grid .card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

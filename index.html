@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今天吃什么</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <p class="eyebrow">随机选菜小助手</p>
+      <h1>今天吃什么</h1>
+      <p class="subtitle">从你的私藏菜单里抽一份，少纠结，直接开炒。</p>
+    </section>
+
+    <section class="card picker-card">
+      <div class="result-wrap">
+        <p class="label">本轮抽中</p>
+        <h2 id="result" class="result">点击下面按钮开始抽菜</h2>
+      </div>
+
+      <div class="actions">
+        <button id="pickBtn" class="btn primary" type="button">随机选一道</button>
+        <button id="rerollBtn" class="btn ghost" type="button">再来一次</button>
+        <button id="copyBtn" class="btn ghost" type="button">复制结果</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <section class="card">
+        <div class="section-head">
+          <h3>菜单</h3>
+          <span id="count" class="badge"></span>
+        </div>
+        <div id="menuList" class="menu-list"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h3>最近抽中</h3>
+          <button id="clearHistoryBtn" class="text-btn" type="button">清空</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+      </section>
+    </section>
+  </main>
+
+  <template id="menuItemTemplate">
+    <span class="menu-item"></span>
+  </template>
+
+  <script src="./script.js"></script>
+</body>
+</html>
