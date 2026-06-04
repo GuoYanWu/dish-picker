@@ -436,7 +436,17 @@ const HISTORY_KEY = "dish-picker-history";
 const MAX_HISTORY = 8;
 const RECENT_AVOID_COUNT = 3;
 const filters = ["全部", "素菜", "鸡肉", "猪肉", "牛羊肉", "海鲜", "重口"];
-const videoLinksByDish = {};
+const videoLinksByDish = Object.fromEntries(
+  dishes.map((dish) => [
+    dish.name,
+    [
+      {
+        label: "B站搜索教程",
+        url: `https://search.bilibili.com/all?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
+      },
+    ],
+  ])
+);
 
 let currentDish = "";
 let rollingTimer = null;
