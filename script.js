@@ -429,32 +429,11 @@ const recipeTagsEl = document.getElementById("recipeTags");
 const ingredientsListEl = document.getElementById("ingredientsList");
 const stepsListEl = document.getElementById("stepsList");
 const recipeTipsEl = document.getElementById("recipeTips");
-const recipeVideoEmptyEl = document.getElementById("recipeVideoEmpty");
-const recipeVideoLinksEl = document.getElementById("recipeVideoLinks");
 
 const HISTORY_KEY = "dish-picker-history";
 const MAX_HISTORY = 8;
 const RECENT_AVOID_COUNT = 3;
 const filters = ["全部", "素菜", "鸡肉", "猪肉", "牛羊肉", "海鲜", "重口"];
-const videoLinksByDish = Object.fromEntries(
-  dishes.map((dish) => [
-    dish.name,
-    [
-      {
-        label: "B站搜索",
-        url: `https://search.bilibili.com/all?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
-      },
-      {
-        label: "网页搜抖音",
-        url: `https://www.baidu.com/s?wd=${encodeURIComponent(`site:douyin.com ${dish.name} 做法`)}`,
-      },
-      {
-        label: "网页搜小红书",
-        url: `https://www.xiaohongshu.com/search_result?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
-      },
-    ],
-  ])
-);
 
 let currentDish = "";
 let rollingTimer = null;
@@ -1092,45 +1071,6 @@ function renderRecipe(dish) {
     li.textContent = step;
     stepsListEl.appendChild(li);
   });
-
-  const links = videoLinksByDish[dish.name] || [];
-  recipeVideoLinksEl.innerHTML = "";
-
-  if (links.length === 0) {
-    recipeVideoEmptyEl.classList.remove("hidden");
-  } else {
-    recipeVideoEmptyEl.classList.add("hidden");
-    links.forEach((item) => {
-      const anchor = document.createElement("a");
-      anchor.className = "video-link";
-      anchor.href = item.url;
-      anchor.target = "_blank";
-      anchor.rel = "noreferrer";
-      anchor.textContent = item.label;
-      recipeVideoLinksEl.appendChild(anchor);
-    });
-
-    const copyButton = document.createElement("button");
-    copyButton.className = "video-link is-copy";
-    copyButton.type = "button";
-    copyButton.textContent = "复制搜索词";
-    copyButton.addEventListener("click", async () => {
-      const keyword = `${dish.name} 做法`;
-      try {
-        await navigator.clipboard.writeText(keyword);
-        copyButton.textContent = "已复制";
-        window.setTimeout(() => {
-          copyButton.textContent = "复制搜索词";
-        }, 1200);
-      } catch {
-        copyButton.textContent = "复制失败";
-        window.setTimeout(() => {
-          copyButton.textContent = "复制搜索词";
-        }, 1200);
-      }
-    });
-    recipeVideoLinksEl.appendChild(copyButton);
-  }
 }
 
 function resetRecipePanel() {
@@ -1141,8 +1081,6 @@ function resetRecipePanel() {
   ingredientsListEl.innerHTML = "";
   stepsListEl.innerHTML = "";
   recipeTipsEl.textContent = "";
-  recipeVideoLinksEl.innerHTML = "";
-  recipeVideoEmptyEl.classList.remove("hidden");
   recipeServingsEl.textContent = "默认 2 人份";
 }
 
