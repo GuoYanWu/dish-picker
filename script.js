@@ -573,6 +573,66 @@ function drawDish() {
   return pool[index];
 }
 
+function enrichStepText(step, dish) {
+  const dishTags = dish.tags.join(",");
+  const isChicken = dishTags.includes("鸡肉");
+  const isPork = dishTags.includes("猪肉");
+  const isBeefOrLamb = dishTags.includes("牛羊肉");
+  const isSeafood = dishTags.includes("海鲜");
+  let text = step;
+
+  if (text.includes("腌一下")) {
+    if (isChicken) {
+      text = text.replace("腌一下", "加入 1 汤匙料酒、1 汤匙生抽、少许白胡椒和 1 茶匙淀粉抓匀，腌 10 到 15 分钟");
+    } else if (isPork) {
+      text = text.replace("腌一下", "加入 1 汤匙料酒、1 汤匙生抽和 1 茶匙淀粉抓匀，腌 10 分钟");
+    } else if (isBeefOrLamb) {
+      text = text.replace("腌一下", "加入 1 汤匙生抽、半汤匙料酒、少许黑胡椒和 1 茶匙淀粉抓匀，腌 10 分钟");
+    } else if (isSeafood) {
+      text = text.replace("腌一下", "加入少许料酒和白胡椒抓匀，腌 5 分钟");
+    } else {
+      text = text.replace("腌一下", "简单加盐和少许调味料抓匀，静置 5 到 10 分钟");
+    }
+  }
+
+  text = text.replace("先炒鸡丁至变色盛出。", "锅里下 1 到 2 汤匙油，中大火把鸡丁快速滑散，炒到表面发白、六七成熟就先盛出，别一次炒太久。");
+  text = text.replace("先炒肉到变色盛出。", "锅里热油后下肉片快速滑散，炒到刚变色就先盛出，避免久炒发柴。");
+  text = text.replace("先炒牛肉变色盛出。", "牛肉下锅后用中大火快速翻炒 40 到 60 秒，刚变色就先盛出，后面再回锅。");
+  text = text.replace("先炒牛肉到变色。", "牛肉下锅后用中大火快速翻炒 40 到 60 秒，刚变色即可。");
+  text = text.replace("先炒羊肉。", "先开大火把羊肉快速炒散，看到刚变色、边缘微卷就可以继续下一步。");
+  text = text.replace("先炒鸡肉到变色。", "锅里热油后下鸡肉，中大火快速翻炒 1 分钟左右，炒到表面变白即可。");
+  text = text.replace("先炒鸡肉变色盛出。", "锅里热油后下鸡肉，中大火快速翻炒 1 分钟左右，炒到表面变白先盛出。");
+  text = text.replace("先炒鸡蛋盛出。", "鸡蛋先下锅炒到刚凝固、还比较嫩的时候就盛出，后面再回锅口感更好。");
+  text = text.replace("焯水 1 分钟。", "水开后下锅焯 1 分钟左右，捞出沥干备用。");
+  text = text.replace("焯去血沫。", "冷水下锅焯到浮沫明显出来后捞出，再用温水冲洗干净。");
+  text = text.replace("焯水洗净。", "冷水下锅焯到没有明显血沫后捞出，用温水洗净备用。");
+  text = text.replace("煎到两面金黄。", "中小火慢慢煎到两面都呈金黄色，按一下肉质有弹性就差不多了。");
+  text = text.replace("煎到表面金黄。", "中小火煎到表面明显上色，边缘微焦就可以。");
+  text = text.replace("大火收汁裹匀即可。", "最后转大火不断翻动，让汤汁变浓并均匀裹在食材表面即可出锅。");
+  text = text.replace("收汁后加盐调味即可。", "看到锅里只剩薄薄一层汤汁时，加盐调味，再翻匀出锅。");
+  text = text.replace("断生即可出锅。", "炒到颜色变亮、刚刚断生时就出锅，口感最好。");
+  text = text.replace("炒匀即可。", "所有调料翻匀后再炒 20 到 30 秒，让味道完全裹住食材即可。");
+  text = text.replace("焖 3 分钟收汁即可。", "盖盖小火焖 3 分钟左右，开盖后再稍微收一下汁即可。");
+  text = text.replace("中火焖煮 12 分钟。", "保持中火焖 10 到 12 分钟，中途翻一次面让颜色更均匀。");
+  text = text.replace("小火焖 12 分钟。", "盖盖小火焖 10 到 12 分钟，中途翻动一两次避免糊底。");
+  text = text.replace("小火炖 35 分钟后收汁。", "转小火慢炖 30 到 35 分钟，筷子能轻松扎进去后再开大火收汁。");
+  text = text.replace("小火炖 40 分钟，最后收汁。", "保持小火慢炖 35 到 40 分钟，土豆和肉都软了以后再收汁。");
+  text = text.replace("小火炖 1 小时以上。", "保持小火慢炖 1 小时到 1 个半小时，中间注意补热水，炖到软糯为止。");
+  text = text.replace("中小火焖 30 分钟。", "盖盖保持中小火焖 25 到 30 分钟，期间看一下水量，防止烧干。");
+
+  if (dish.name === "辣子鸡丁") {
+    return [
+      "鸡腿肉切成 2 厘米左右小丁，加入 1 汤匙料酒、1 汤匙生抽、少许盐、少许白胡椒和 1 茶匙淀粉抓匀，腌 10 到 15 分钟。",
+      "锅里多一点油，中火把鸡丁煎到表面金黄、边缘微焦，内部八九成熟后先盛出；如果想更香，也可以小火半煎半炸。",
+      "锅中留少量底油，下干辣椒、花椒和蒜末，小火慢慢炒到闻到明显麻辣香味，注意别把辣椒炒黑。",
+      "把鸡丁回锅，转中大火快速翻炒 30 到 40 秒，让鸡丁裹上辣椒和花椒的香味。",
+      "最后加 1 汤匙生抽和少许糖提鲜，再翻炒 20 秒左右就可以出锅；喜欢更干香一点的话可以多炒一会儿。"
+    ][dish.steps.indexOf(step)] || text;
+  }
+
+  return text;
+}
+
 function renderRecipe(dish) {
   recipeEmptyEl.classList.add("hidden");
   recipePanelEl.classList.remove("hidden");
@@ -598,7 +658,7 @@ function renderRecipe(dish) {
   stepsListEl.innerHTML = "";
   dish.steps.forEach((step) => {
     const li = document.createElement("li");
-    li.textContent = step;
+    li.textContent = enrichStepText(step, dish);
     stepsListEl.appendChild(li);
   });
 }
