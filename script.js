@@ -446,11 +446,11 @@ const videoLinksByDish = Object.fromEntries(
       },
       {
         label: "抖音搜索教程",
-        url: `https://www.douyin.com/search/${encodeURIComponent(`${dish.name} 做法`)}`,
+        url: `https://www.baidu.com/s?wd=${encodeURIComponent(`site:douyin.com ${dish.name} 做法`)}`,
       },
       {
         label: "小红书搜索教程",
-        url: `xhsdiscover://search/result?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
+        url: `https://www.baidu.com/s?wd=${encodeURIComponent(`site:xiaohongshu.com/search_result ${dish.name} 做法`)}`,
       },
     ],
   ])
