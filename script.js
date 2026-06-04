@@ -450,7 +450,7 @@ const videoLinksByDish = Object.fromEntries(
       },
       {
         label: "小红书搜索教程",
-        url: `https://www.baidu.com/s?wd=${encodeURIComponent(`site:xiaohongshu.com/search_result ${dish.name} 做法`)}`,
+        url: `https://www.xiaohongshu.com/search_result?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
       },
     ],
   ])
