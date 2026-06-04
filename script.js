@@ -603,6 +603,17 @@ function renderRecipe(dish) {
   });
 }
 
+function resetRecipePanel() {
+  recipePanelEl.classList.add("hidden");
+  recipeEmptyEl.classList.remove("hidden");
+  recipeTitleEl.textContent = "";
+  recipeTagsEl.innerHTML = "";
+  ingredientsListEl.innerHTML = "";
+  stepsListEl.innerHTML = "";
+  recipeTipsEl.textContent = "";
+  recipeServingsEl.textContent = "默认 2 人份";
+}
+
 function stopRolling(finalDish) {
   if (rollingTimer) {
     clearInterval(rollingTimer);
@@ -677,6 +688,10 @@ function clearHistory() {
   renderHistory();
   updateMenuVisibility();
   currentDish = "";
+  resultEl.classList.remove("is-rolling");
+  resultEl.textContent = "点击下面按钮开始抽菜";
+  highlightDish("");
+  resetRecipePanel();
   syncResultMeta();
 }
 
