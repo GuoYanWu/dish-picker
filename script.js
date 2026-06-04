@@ -444,6 +444,14 @@ const videoLinksByDish = Object.fromEntries(
         label: "B站搜索教程",
         url: `https://search.bilibili.com/all?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
       },
+      {
+        label: "抖音搜索教程",
+        url: `https://www.douyin.com/search/${encodeURIComponent(`${dish.name} 做法`)}`,
+      },
+      {
+        label: "小红书搜索教程",
+        url: `xhsdiscover://search/result?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
+      },
     ],
   ])
 );
