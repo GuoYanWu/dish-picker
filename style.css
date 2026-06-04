@@ -258,6 +258,37 @@ input {
   line-height: 1.8;
 }
 
+.recipe-video-empty {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.recipe-video-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(95, 76, 41, 0.1);
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.video-link:hover {
+  transform: translateY(-1px);
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;

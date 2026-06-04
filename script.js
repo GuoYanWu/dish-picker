@@ -429,11 +429,14 @@ const recipeTagsEl = document.getElementById("recipeTags");
 const ingredientsListEl = document.getElementById("ingredientsList");
 const stepsListEl = document.getElementById("stepsList");
 const recipeTipsEl = document.getElementById("recipeTips");
+const recipeVideoEmptyEl = document.getElementById("recipeVideoEmpty");
+const recipeVideoLinksEl = document.getElementById("recipeVideoLinks");
 
 const HISTORY_KEY = "dish-picker-history";
 const MAX_HISTORY = 8;
 const RECENT_AVOID_COUNT = 3;
 const filters = ["全部", "素菜", "鸡肉", "猪肉", "牛羊肉", "海鲜", "重口"];
+const videoLinksByDish = {};
 
 let currentDish = "";
 let rollingTimer = null;
@@ -1071,6 +1074,24 @@ function renderRecipe(dish) {
     li.textContent = step;
     stepsListEl.appendChild(li);
   });
+
+  const links = videoLinksByDish[dish.name] || [];
+  recipeVideoLinksEl.innerHTML = "";
+
+  if (links.length === 0) {
+    recipeVideoEmptyEl.classList.remove("hidden");
+  } else {
+    recipeVideoEmptyEl.classList.add("hidden");
+    links.forEach((item) => {
+      const anchor = document.createElement("a");
+      anchor.className = "video-link";
+      anchor.href = item.url;
+      anchor.target = "_blank";
+      anchor.rel = "noreferrer";
+      anchor.textContent = item.label;
+      recipeVideoLinksEl.appendChild(anchor);
+    });
+  }
 }
 
 function resetRecipePanel() {
@@ -1081,6 +1102,8 @@ function resetRecipePanel() {
   ingredientsListEl.innerHTML = "";
   stepsListEl.innerHTML = "";
   recipeTipsEl.textContent = "";
+  recipeVideoLinksEl.innerHTML = "";
+  recipeVideoEmptyEl.classList.remove("hidden");
   recipeServingsEl.textContent = "默认 2 人份";
 }
 
