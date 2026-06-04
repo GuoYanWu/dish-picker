@@ -441,15 +441,15 @@ const videoLinksByDish = Object.fromEntries(
     dish.name,
     [
       {
-        label: "B站搜索教程",
+        label: "B站搜索",
         url: `https://search.bilibili.com/all?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
       },
       {
-        label: "抖音搜索教程",
+        label: "网页搜抖音",
         url: `https://www.baidu.com/s?wd=${encodeURIComponent(`site:douyin.com ${dish.name} 做法`)}`,
       },
       {
-        label: "小红书搜索教程",
+        label: "网页搜小红书",
         url: `https://www.xiaohongshu.com/search_result?keyword=${encodeURIComponent(`${dish.name} 做法`)}`,
       },
     ],
@@ -1109,6 +1109,27 @@ function renderRecipe(dish) {
       anchor.textContent = item.label;
       recipeVideoLinksEl.appendChild(anchor);
     });
+
+    const copyButton = document.createElement("button");
+    copyButton.className = "video-link is-copy";
+    copyButton.type = "button";
+    copyButton.textContent = "复制搜索词";
+    copyButton.addEventListener("click", async () => {
+      const keyword = `${dish.name} 做法`;
+      try {
+        await navigator.clipboard.writeText(keyword);
+        copyButton.textContent = "已复制";
+        window.setTimeout(() => {
+          copyButton.textContent = "复制搜索词";
+        }, 1200);
+      } catch {
+        copyButton.textContent = "复制失败";
+        window.setTimeout(() => {
+          copyButton.textContent = "复制搜索词";
+        }, 1200);
+      }
+    });
+    recipeVideoLinksEl.appendChild(copyButton);
   }
 }
 

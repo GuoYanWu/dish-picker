@@ -264,6 +264,12 @@ input {
   line-height: 1.7;
 }
 
+.recipe-video-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .recipe-video-links {
   display: flex;
   flex-wrap: wrap;
@@ -283,6 +289,10 @@ input {
   color: var(--text);
   text-decoration: none;
   font-weight: 700;
+}
+
+.video-link.is-copy {
+  background: linear-gradient(135deg, rgba(207, 90, 42, 0.14), rgba(111, 139, 78, 0.16));
 }
 
 .video-link:hover {
