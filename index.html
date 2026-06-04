@@ -11,7 +11,7 @@
     <section class="hero">
       <p class="eyebrow">随机选菜小助手</p>
       <h1>今天吃什么</h1>
-      <p class="subtitle">从你的私藏菜单里抽一份，少纠结，直接开炒。</p>
+      <p class="subtitle">先帮你定菜，再把食材清单和做法步骤直接摆出来。</p>
     </section>
 
     <section class="card picker-card">
@@ -25,6 +25,44 @@
         <button id="pickBtn" class="btn primary" type="button">随机选一道</button>
         <button id="rerollBtn" class="btn ghost" type="button">再来一次</button>
         <button id="copyBtn" class="btn ghost" type="button">复制结果</button>
+      </div>
+    </section>
+
+    <section class="card recipe-card">
+      <div class="section-head">
+        <h3>食材和做法</h3>
+        <span id="recipeServings" class="badge">默认 2 人份</span>
+      </div>
+
+      <div id="recipeEmpty" class="recipe-empty">
+        抽中一道菜后，这里会自动显示食材清单、步骤和小贴士。
+      </div>
+
+      <div id="recipePanel" class="recipe-panel hidden">
+        <div class="recipe-top">
+          <div>
+            <p class="recipe-label">当前菜谱</p>
+            <h3 id="recipeTitle" class="recipe-title"></h3>
+          </div>
+          <div id="recipeTags" class="recipe-tags"></div>
+        </div>
+
+        <div class="recipe-grid">
+          <section class="recipe-block">
+            <h4>食材清单</h4>
+            <ul id="ingredientsList" class="recipe-list"></ul>
+          </section>
+
+          <section class="recipe-block">
+            <h4>做法步骤</h4>
+            <ol id="stepsList" class="steps-list"></ol>
+          </section>
+        </div>
+
+        <section class="recipe-block recipe-tip-block">
+          <h4>小贴士</h4>
+          <p id="recipeTips" class="recipe-tips"></p>
+        </section>
       </div>
     </section>
 
@@ -54,7 +92,7 @@
   </main>
 
   <template id="menuItemTemplate">
-    <span class="menu-item"></span>
+    <button class="menu-item" type="button"></button>
   </template>
 
   <template id="filterTemplate">
